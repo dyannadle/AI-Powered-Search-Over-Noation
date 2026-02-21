@@ -1,0 +1,42 @@
+# AI Document Search Configuration (Properties Format)
+# Copy this file to application.properties and fill in your credentials
+
+# Notion API Configuration
+notion.api.key=your-notion-api-key-here
+notion.workspace.id=your-workspace-id-here
+
+# Google Drive API Configuration
+google.drive.credentials.path=/path/to/credentials.json
+
+# OpenAI API Configuration
+openai.api.key=your-openai-api-key-here
+openai.embedding.model=text-embedding-ada-002
+
+# ChromaDB Configuration
+chroma.persist.directory=./data/chroma
+chroma.collection.name=document-embeddings
+
+# Document Processing Configuration
+processing.chunk.size=1000
+processing.chunk.overlap=200
+
+# Query Configuration
+query.default.result.limit=5
+query.max.result.limit=20
+query.similarity.threshold=0.7
+query.max.query.length=500
+
+# Performance Configuration
+performance.max.concurrent.queries=10
+performance.embedding.batch.size=100
+performance.query.timeout.seconds=3
+
+# Retry Configuration
+retry.max.attempts=3
+retry.initial.delay.ms=1000
+retry.max.delay.ms=60000
+retry.backoff.multiplier=2.0
+
+# Security Configuration
+security.encrypt.credentials=true
+security.enforce.https=true
