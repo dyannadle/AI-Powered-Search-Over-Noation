@@ -53,21 +53,21 @@ class DocumentMetadataPreservationPropertyTest {
                 .build();
         
         // Assert: Verify all required metadata fields are preserved
-        assertNotNull(document.metadata, "Metadata should not be null");
-        assertNotNull(document.metadata.author, "Author should not be null");
-        assertFalse(document.metadata.author.trim().isEmpty(), "Author should not be empty");
-        assertNotNull(document.metadata.createdAt, "Created timestamp should not be null");
-        assertNotNull(document.metadata.modifiedAt, "Modified timestamp should not be null");
-        assertNotNull(document.metadata.url, "URL should not be null");
-        assertFalse(document.metadata.url.trim().isEmpty(), "URL should not be empty");
-        assertNotNull(document.metadata.permissions, "Permissions should not be null");
+        assertNotNull(document.getMetadata(), "Metadata should not be null");
+        assertNotNull(document.getMetadata().getAuthor(), "Author should not be null");
+        assertFalse(document.getMetadata().getAuthor().trim().isEmpty(), "Author should not be empty");
+        assertNotNull(document.getMetadata().getCreatedAt(), "Created timestamp should not be null");
+        assertNotNull(document.getMetadata().getModifiedAt(), "Modified timestamp should not be null");
+        assertNotNull(document.getMetadata().getUrl(), "URL should not be null");
+        assertFalse(document.getMetadata().getUrl().trim().isEmpty(), "URL should not be empty");
+        assertNotNull(document.getMetadata().getPermissions(), "Permissions should not be null");
         
         // Verify the values are exactly what was provided
-        assertEquals(author, document.metadata.author, "Author should be preserved");
-        assertEquals(createdAt, document.metadata.createdAt, "Created timestamp should be preserved");
-        assertEquals(modifiedAt, document.metadata.modifiedAt, "Modified timestamp should be preserved");
-        assertEquals(url, document.metadata.url, "URL should be preserved");
-        assertEquals(permissions, document.metadata.permissions, "Permissions should be preserved");
+        assertEquals(author, document.getMetadata().getAuthor(), "Author should be preserved");
+        assertEquals(createdAt, document.getMetadata().getCreatedAt(), "Created timestamp should be preserved");
+        assertEquals(modifiedAt, document.getMetadata().getModifiedAt(), "Modified timestamp should be preserved");
+        assertEquals(url, document.getMetadata().getUrl(), "URL should be preserved");
+        assertEquals(permissions, document.getMetadata().getPermissions(), "Permissions should be preserved");
     }
 
     @Property(tries = 100)

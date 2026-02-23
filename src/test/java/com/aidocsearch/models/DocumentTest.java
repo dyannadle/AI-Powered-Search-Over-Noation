@@ -35,11 +35,11 @@ class DocumentTest {
                 .build();
         
         assertNotNull(doc);
-        assertEquals("doc-123", doc.id);
-        assertEquals("notion", doc.source);
-        assertEquals("Test Document", doc.title);
-        assertEquals("This is test content", doc.content);
-        assertNotNull(doc.metadata);
+        assertEquals("doc-123", doc.getId());
+        assertEquals("notion", doc.getSource());
+        assertEquals("Test Document", doc.getTitle());
+        assertEquals("This is test content", doc.getContent());
+        assertNotNull(doc.getMetadata());
     }
 
     @Test
@@ -53,7 +53,7 @@ class DocumentTest {
                 .build();
         
         doc.validate();
-        assertEquals("notion", doc.source);
+        assertEquals("notion", doc.getSource());
     }
 
     @Test
@@ -67,7 +67,7 @@ class DocumentTest {
                 .build();
         
         doc.validate();
-        assertEquals("google_drive", doc.source);
+        assertEquals("google_drive", doc.getSource());
     }
 
     @Test
@@ -123,7 +123,7 @@ class DocumentTest {
                 .build();
         
         doc.validate();
-        assertEquals("", doc.content);
+        assertEquals("", doc.getContent());
     }
 
     @Test

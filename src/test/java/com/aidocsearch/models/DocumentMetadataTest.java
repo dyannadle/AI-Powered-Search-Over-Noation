@@ -24,11 +24,11 @@ class DocumentMetadataTest {
                 .build();
         
         assertNotNull(metadata);
-        assertEquals("John Doe", metadata.author);
-        assertEquals(now, metadata.createdAt);
-        assertEquals(later, metadata.modifiedAt);
-        assertEquals("https://example.com/doc", metadata.url);
-        assertEquals(2, metadata.permissions.size());
+        assertEquals("John Doe", metadata.getAuthor());
+        assertEquals(now, metadata.getCreatedAt());
+        assertEquals(later, metadata.getModifiedAt());
+        assertEquals("https://example.com/doc", metadata.getUrl());
+        assertEquals(2, metadata.getPermissions().size());
     }
 
     @Test
@@ -112,7 +112,7 @@ class DocumentMetadataTest {
                 .author("Jane Smith")
                 .build();
         
-        assertEquals("Jane Smith", modified.author);
-        assertEquals(now, modified.createdAt);
+        assertEquals("Jane Smith", modified.getAuthor());
+        assertEquals(now, modified.getCreatedAt());
     }
 }

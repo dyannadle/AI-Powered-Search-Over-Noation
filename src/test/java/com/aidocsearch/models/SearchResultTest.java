@@ -44,9 +44,9 @@ class SearchResultTest {
                 .build();
         
         assertNotNull(result);
-        assertEquals(validChunk, result.chunk);
-        assertEquals(0.85, result.relevanceScore);
-        assertEquals("doc-123", result.sourceDocument);
+        assertEquals(validChunk, result.getChunk());
+        assertEquals(0.85, result.getRelevanceScore());
+        assertEquals("doc-123", result.getSourceDocument());
     }
 
     @Test
@@ -94,7 +94,7 @@ class SearchResultTest {
                 .build();
         
         result.validate();
-        assertEquals(0.0, result.relevanceScore);
+        assertEquals(0.0, result.getRelevanceScore());
     }
 
     @Test
@@ -106,7 +106,7 @@ class SearchResultTest {
                 .build();
         
         result.validate();
-        assertEquals(1.0, result.relevanceScore);
+        assertEquals(1.0, result.getRelevanceScore());
     }
 
     @Test
@@ -126,8 +126,8 @@ class SearchResultTest {
         List<SearchResult> results = Arrays.asList(low, high);
         Collections.sort(results);
         
-        assertEquals(0.9, results.get(0).relevanceScore);
-        assertEquals(0.5, results.get(1).relevanceScore);
+        assertEquals(0.9, results.get(0).getRelevanceScore());
+        assertEquals(0.5, results.get(1).getRelevanceScore());
     }
 
     @Test
@@ -167,8 +167,8 @@ class SearchResultTest {
         Collections.sort(results);
         
         // Newer document should come first when scores are equal
-        assertEquals(newer, results.get(0).chunk.metadata.modifiedAt);
-        assertEquals(older, results.get(1).chunk.metadata.modifiedAt);
+        assertEquals(newer, results.get(0).getChunk().getMetadata().getModifiedAt());
+        assertEquals(older, results.get(1).getChunk().getMetadata().getModifiedAt());
     }
 
     @Test
@@ -208,7 +208,7 @@ class SearchResultTest {
         Collections.sort(results);
         
         // Should sort by recency since scores differ by less than 0.01
-        assertEquals(newer, results.get(0).chunk.metadata.modifiedAt);
-        assertEquals(older, results.get(1).chunk.metadata.modifiedAt);
+        assertEquals(newer, results.get(0).getChunk().getMetadata().getModifiedAt());
+        assertEquals(older, results.get(1).getChunk().getMetadata().getModifiedAt());
     }
 }

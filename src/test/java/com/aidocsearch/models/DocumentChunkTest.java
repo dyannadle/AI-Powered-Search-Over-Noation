@@ -35,11 +35,11 @@ class DocumentChunkTest {
                 .build();
         
         assertNotNull(chunk);
-        assertEquals("chunk-1", chunk.id);
-        assertEquals("doc-123", chunk.documentId);
-        assertEquals("This is chunk content", chunk.content);
-        assertEquals(0, chunk.chunkIndex);
-        assertNotNull(chunk.metadata);
+        assertEquals("chunk-1", chunk.getId());
+        assertEquals("doc-123", chunk.getDocumentId());
+        assertEquals("This is chunk content", chunk.getContent());
+        assertEquals(0, chunk.getChunkIndex());
+        assertNotNull(chunk.getMetadata());
     }
 
     @Test
@@ -95,7 +95,7 @@ class DocumentChunkTest {
                 .build();
         
         chunk.validate();
-        assertEquals(0, chunk.chunkIndex);
+        assertEquals(0, chunk.getChunkIndex());
     }
 
     @Test
@@ -109,7 +109,7 @@ class DocumentChunkTest {
                 .build();
         
         chunk.validate();
-        assertEquals(999, chunk.chunkIndex);
+        assertEquals(999, chunk.getChunkIndex());
     }
 
     @Test

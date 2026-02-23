@@ -25,7 +25,7 @@
         <google.drive.version>v3-rev20240123-2.0.0</google.drive.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.4.14</logback.version>
-        <lombok.version>1.18.36</lombok.version>
+
         <junit.version>5.10.1</junit.version>
         <jqwik.version>1.8.2</jqwik.version>
         <mockito.version>5.8.0</mockito.version>
@@ -104,13 +104,7 @@
             <version>${logback.version}</version>
         </dependency>
 
-        <!-- Lombok for reducing boilerplate -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
+
 
         <!-- Configuration management -->
         <dependency>
@@ -154,13 +148,6 @@
                 <version>3.13.0</version>
                 <configuration>
                     <release>17</release>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
