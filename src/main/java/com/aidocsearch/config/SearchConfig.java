@@ -10,39 +10,40 @@ public class SearchConfig {
     // Notion configuration
     private final String notionApiKey;
     private final String notionWorkspaceId;
-    
+
     // Google Drive configuration
     private final String googleCredentialsPath;
-    
+
     // OpenAI configuration
     private final String openaiApiKey;
     private final String openaiEmbeddingModel;
-    
+
     // ChromaDB configuration
+    private final String chromaUrl;
     private final String chromaPersistDirectory;
     private final String chromaCollectionName;
-    
+
     // Document processing configuration
     private final int chunkSize;
     private final int chunkOverlap;
-    
+
     // Query configuration
     private final int defaultResultLimit;
     private final int maxResultLimit;
     private final double similarityThreshold;
     private final int maxQueryLength;
-    
+
     // Performance configuration
     private final int maxConcurrentQueries;
     private final int embeddingBatchSize;
     private final int queryTimeoutSeconds;
-    
+
     // Retry configuration
     private final int retryMaxAttempts;
     private final long retryInitialDelayMs;
     private final long retryMaxDelayMs;
     private final double retryBackoffMultiplier;
-    
+
     // Security configuration
     private final boolean encryptCredentials;
     private final boolean enforceHttps;
@@ -53,6 +54,7 @@ public class SearchConfig {
         this.googleCredentialsPath = builder.googleCredentialsPath;
         this.openaiApiKey = builder.openaiApiKey;
         this.openaiEmbeddingModel = builder.openaiEmbeddingModel;
+        this.chromaUrl = builder.chromaUrl;
         this.chromaPersistDirectory = builder.chromaPersistDirectory;
         this.chromaCollectionName = builder.chromaCollectionName;
         this.chunkSize = builder.chunkSize;
@@ -90,6 +92,10 @@ public class SearchConfig {
 
     public String getOpenaiEmbeddingModel() {
         return openaiEmbeddingModel;
+    }
+
+    public String getChromaUrl() {
+        return chromaUrl;
     }
 
     public String getChromaPersistDirectory() {
@@ -162,8 +168,10 @@ public class SearchConfig {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         SearchConfig that = (SearchConfig) o;
         return chunkSize == that.chunkSize &&
                 chunkOverlap == that.chunkOverlap &&
@@ -244,6 +252,7 @@ public class SearchConfig {
         private String googleCredentialsPath;
         private String openaiApiKey;
         private String openaiEmbeddingModel = "text-embedding-ada-002";
+        private String chromaUrl = "http://localhost:8000/api/v1";
         private String chromaPersistDirectory = "./data/chroma";
         private String chromaCollectionName = "document-embeddings";
         private int chunkSize = 1000;
@@ -284,6 +293,11 @@ public class SearchConfig {
 
         public Builder openaiEmbeddingModel(String openaiEmbeddingModel) {
             this.openaiEmbeddingModel = openaiEmbeddingModel;
+            return this;
+        }
+
+        public Builder chromaUrl(String chromaUrl) {
+            this.chromaUrl = chromaUrl;
             return this;
         }
 
@@ -386,9 +400,10 @@ public class SearchConfig {
             // At least one document source must be configured
             boolean hasNotionConfig = notionApiKey != null && !notionApiKey.trim().isEmpty();
             boolean hasGoogleConfig = googleCredentialsPath != null && !googleCredentialsPath.trim().isEmpty();
-            
+
             if (!hasNotionConfig && !hasGoogleConfig) {
-                throw new ConfigurationException("At least one document source (Notion or Google Drive) must be configured");
+                throw new ConfigurationException(
+                        "At least one document source (Notion or Google Drive) must be configured");
             }
 
             // Validate Notion configuration completeness

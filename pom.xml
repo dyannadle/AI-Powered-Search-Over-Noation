@@ -91,6 +91,11 @@
             <artifactId>google-auth-library-oauth2-http</artifactId>
             <version>1.20.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-gson</artifactId>
+            <version>1.44.1</version>
+        </dependency>
 
         <!-- Logging -->
         <dependency>
@@ -138,6 +143,12 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <version>4.12.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -154,6 +165,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.3</version>
+                <configuration>
+                    <excludes>
+                        <!-- Requires OPENAI_API_KEY; run with: mvn test -Dtest=EmbeddingGenerationPropertyTest -->
+                        <exclude>**/EmbeddingGenerationPropertyTest.java</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
